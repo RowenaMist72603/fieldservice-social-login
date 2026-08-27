@@ -1,0 +1,7 @@
+{
+  "name": "fieldservice-social-login",
+  "private": true,
+  "type": "module",
+  "scripts": {"start": "node --experimental-strip-types src/field_service_login.ts", "test": "node --experimental-strip-types src/field_service_login.test.ts", "typecheck": "tsc --noEmit"},
+  "devDependencies": {"@types/node": "^22.0.0", "typescript": "^5.9.0"}
+}
