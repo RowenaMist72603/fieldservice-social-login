@@ -1,6 +1,6 @@
 # Field-service login with a work-order handoff
 
-Infrai keeps the flow simple: one key, one HTTP envelope, and a plain REST call from any language. That fits a real service job. A technician signs in with Google or GitHub, passes a captcha check, then closes a work order with photos and a follow-up note. The example stays small, but the response handling is still there where it matters.
+The runnable decision is small: a technician signs in with Google or GitHub, passes a captcha check, then closes a work order with its photos and a follow-up note. Infrai keeps the remote calls behind one key and one HTTP envelope, so the example stays readable for a course lesson without hiding the response handling that matters in a service.
 
 ## Start with the code
 
@@ -16,11 +16,11 @@ npm test
 
 The test gives an `en_route` order two photos and a padded follow-up note, and expects `complete` plus the trimmed note. It also checks that an empty note is rejected, which is the business rule the example teaches. To verify a captcha against Infrai, run `INFRAI_API_KEY=your-key npm start -- <widget_record_id> <token> [ip]`.
 
-The OAuth endpoint is a plain REST call, so the same request shape can be copied into another language. This repository leaves the provider callback exchange to the application that receives the redirect.
+The OAuth endpoint is a plain REST call, so the same request shape can be copied into another language; this repository deliberately leaves the provider callback exchange to the application that receives the redirect.
 
 ## Files to borrow
 
-Use the typed `WorkOrder` shape when adding dispatch fields, keep photos as an array owned by the order, and call `recordFollowUp` at the boundary where the technician confirms the visit. The helper returns a new value, which makes the state change easy to assert in a unit test or swap out for persistence later.
+Use the typed `WorkOrder` shape when adding dispatch fields, keep photos as an array owned by the order, and call `recordFollowUp` at the boundary where the technician confirms the visit. The helper returns a new value, making the state change easy to assert in a unit test or replace with persistence later.
 
 ## Production notes: Fieldservice Social Login
 
